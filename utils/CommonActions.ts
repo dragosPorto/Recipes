@@ -15,6 +15,7 @@ export default class CommonActions {
     async acceptCookies() {
         // Accept cookies if the button is present
         const acceptCookiesButton = this.page.locator("button[id='onetrust-accept-btn-handler']");
+        // Check if the button is visible before clicking
         if (await acceptCookiesButton.isVisible()) {
             await acceptCookiesButton.click();
         }
@@ -40,15 +41,15 @@ export default class CommonActions {
     }
 
     // Method that gets the text content of an element
-    async getText(selector: string): Promise<string> {
+    async getText(locator: Locator): Promise<string> {
         // Get the text content of an element specified by the selector
-        const element = this.page.locator(selector);
+        const element = locator;
         return await element.textContent() || '';
     }
 
-    async isChecked(selector: string): Promise<boolean> {
+    async isChecked(locator: Locator): Promise<boolean> {
         // Check if a checkbox or radio button is checked
-        const element = this.page.locator(selector);
+        const element = locator;
         return await element.isChecked();
     }
 
